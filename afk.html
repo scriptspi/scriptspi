@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de AFK</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div id="titulo">
+    <h1 id="Pw">Sistema de AFK.js</h1>
+</div>
+<div class="nav">
+<a href="Scripts.html" class="textonav">Voltar</a>
+<a href="https://discord.gg/aX25MCec27" target="_blank" class="textonav">Discord</a>
+</div>
+<div id="scriptmudo">
+<p id="verde"> // discord https://discord.gg/aX25MCec27 <br>
+    // criador por Ranger#6017 <br>
+    // version pt-br 1.0 <br>
+</p>
+<p id="afk">
+    <mark id="vermelho"> // Sobre: esse script é util contra spam do comando !afk e também é limitado por tempo de 1 hora, caso contrario kick o player</mark>
+    <br>
+    <br>
+    var room = HBInit({<br>
+      roomName: "AFK Por tempo",<br>
+      maxPlayers: 5,<br>
+      public: true,<br>
+      token: "none",<br>
+      noPlayer: true<br>
+    });<br>
+    <br>
+    /* variaveis */<br>
+    <br>
+    var message;<br>
+    var AFK = [] // local dos AFKS<br>
+    var limitetempoafk =  1000 * 60 * 60; // * 1000 * 60 * 60 = 1hora <br>
+    var limite_AFK; // cronometro<br>
+    var semspam = [] // impedir spam de AFK !Afk<br>
+    <br>
+    let cores = {<br>
+    vermelho: 0xFA5646,<br>
+    laranja: 0xFFC12F,<br>
+    verde: 0x7DFA89,<br>
+    amarelo: 0xFFFF17<br>
+    }<br>
+    <br>
+    room.onPlayerChat = function(player,message){<br>
+        message = message;<br>
+        message = message.split(/ +/);<br>
+        if (["!afk"].includes(message[0].toLowerCase())) {<br>
+        if (AFK.includes(player.name) == true) {<br>
+        var retirar = AFK.indexOf(message)<br>
+        AFK.splice(retirar)<br>
+        clearTimeout(limite_AFK);<br>
+        room.sendAnnouncement(`${player.name} Está de volta!`, null, cores.verde, "bold");<br>
+        return false;<br>
+        }<br>
+        else if (["!afk"].includes(message[0].toLowerCase())) {<br>
+        if (semspam.includes(player.name) == true) {<br>
+        room.sendAnnouncement(`${player.name} aguarde 5 segundos para usar esse comando novamente`, null, cores.vermelho, "bold");<br>
+        var retirar = semspam.indexOf(message)<br>
+        semspam.splice(retirar)<br>
+        return false;<br>
+        }<br>
+        else if (AFK.includes(player.name) == false) { <br>
+        if (semspam.includes(player.name) == false) { <br>
+        AFK.push(player.name) <br>
+        semspam.push(player.name) <br>
+        room.setPlayerTeam(player.id,0); <br>
+        room.sendAnnouncement(`você só pode ficar AFK por ${limitetempoafk/60/1000} minutos`, player.id, cores.laranja, "bold");<br>
+        room.sendAnnouncement(`${player.name} ficou afk e não pode ser movido [AFK]`, null, cores.laranja, "bold");<br>
+                    limite_AFK = setTimeout(function(){ <br>
+                        room.kickPlayer(player.id, 'Limite de AFK Execedido', false) <br>
+                        }, 1000 * 60 * 60); <br>
+                    } <br>
+                } <br>
+            } <br> 
+        } <br>
+    } <br>
+    <br>
+    room.onPlayerTeamChange = function(changedPlayer,byPlayer){ <br>
+        if (AFK.includes(changedPlayer.name)) { <br>
+        room.setPlayerTeam(changedPlayer.id, 0); <br>
+        if (byPlayer) room.sendAnnouncement(changedPlayer.name + " está afk e não pode ser movido.", null, cores.amarelo, "bold"); <br>
+        } <br>
+    } <br>
+    </p>
+</div>
+</body>
+</html>
