@@ -90,10 +90,16 @@ div#borda2{
 }
 p#afk{
     width: 800px;
-    height: 1280px;
+    height: 1260px;
     background-color: rgb(224, 224, 224);
     box-shadow: 1px 1px 1px;
     padding-top: 15px;
     padding-left: 15px;
     box-shadow: 1px 1px 1px;
+}
+mark#vermelho{
+color:red;
+background-color: rgb(224, 224, 224);
+text-decoration: none;
+font-family:'Courier New', Courier, monospace;
 }
