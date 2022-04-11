@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System of autoadmin</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div id="titulo">
+    <h1 id="Pw">System of autoadmin.js</h1>
+</div>
+<div class="nav">
+<a href="scripten.html" class="textonav">Back</a>
+<a href="https://discord.gg/aX25MCec27" target="_blank" class="textonav">Discord</a>
+</div>
+<div id="scriptmudo">
+<p id="verde">
+
+</p>
+<p id="preto">
+    var administradores = [["nickname", "authID"]]; // put your auth ID and your nickname here <br>
+    <br>
+    room.onPlayerJoin = function(player) { <br>
+        for(var i=0; i < administradores.length; i++){ <br>
+        if(player.name == administradores[i][0] && player.auth == administradores[i][1]){  <br>
+          room.setPlayerAdmin(player.id,true); <br>
+          room.sendAnnouncement(" 👑 "+ player.name + " was automatically authenticate [ADMIN].",null,0x00FF00,"bold",1);<br>
+        }<br>
+        else if((player.name == administradores[i][0] && player.auth != administradores[i][1]) || (player.name != administradores[i][0] && player.auth == administradores[i][1])){ <br>
+          room.kickPlayer(player.id,"user of an administrator, change your nick!",false); <br>
+        } <br>
+        } <br>
+    } <br>
+</p>
+</div>
+</body>
+</html>

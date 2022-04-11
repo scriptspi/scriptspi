@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de mudo</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div id="titulo">
+    <h1 id="Pw">Sistema de mute.js</h1>
+</div>
+<div class="nav">
+<a href="Scripts.html" class="textonav">Voltar</a>
+<a href="https://discord.gg/aX25MCec27" target="_blank" class="textonav">Discord</a>
+</div>
+<div id="scriptmudo">
+<p id="verde"> // discord https://discord.gg/aX25MCec27 <br>
+    // criador por Ranger#6017 <br>
+    // version pt-br 1.0 <br>
+</p>
+<p id="preto">
+    <br>
+    var room = HBInit({ <br>
+        roomName: "Script mudo", <br>
+        maxPlayers: 5, <br>
+        public: true, <br>
+        token: "none", <br>
+        noPlayer: true<br>
+      });<br>
+      <br>
+      let cores = {<br>
+          vermelho: 0xFA5646,<br>
+          laranja: 0xFFC12F,<br>
+          verde: 0x7DFA89,<br>
+      }<br>
+      
+      var message;<br>
+      
+      const palavras_banidas = ["palavrão1", "palavrão2", "palavrão3", "palavrão4", "palavrão5"] // escreva palavras banidas aqui.<br>
+      var mutadosporpalavrão = [] // mutados por falar palavrão serão armazenados aqui.<br>
+      var tempodemute = 600000; // tempo de punição para mutados, 180000 equivale a 3 minutos.<br>
+      
+      function tempo_para_desbanir(player){<br>
+          setTimeout(() => {<br>
+          var remove = mutadosporpalavrão.indexOf(message);<br>
+          mutadosporpalavrão.splice(remove)<br>
+          room.sendAnnouncement("Você foi desmutado, não fale mais ofensas!", player.id, cores.verde, "bold", 2);<br>
+          }, tempodemute);<br>
+      }<br>
+      <br>
+      room.onPlayerChat = function (player, message) {<br>
+          message = message;<br>
+          if (palavras_banidas.includes(message.toLowerCase())) {<br>
+              mutadosporpalavrão.push(player.name)<br>
+              room.sendAnnouncement("você foi mutado: motivo: sendo tôxico", player.id, cores.vermelho, "bold")<br>
+              tempo_para_desbanir(player)<br>
+              return false;<br>
+          }<br>
+          if (mutadosporpalavrão.includes(player.name) == true) {<br>
+          room.sendAnnouncement("Aguarde 10 minutos para ser desmutado.'", player.id, cores.laranja, "bold")<br>
+          return false;<br>
+          }<br>
+      }</p>
+</div>
+</body>
+</html>

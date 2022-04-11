@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de mudo</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div id="titulo">
+    <h1 id="Pw">System of mute.js</h1>
+</div>
+<div class="nav">
+<a href="scripten.html" class="textonav">Back</a>
+<a href="https://discord.gg/aX25MCec27" target="_blank" class="textonav">Discord</a>
+</div>
+<div id="scriptmudo">
+<p id="verde"> // discord https://discord.gg/aX25MCec27 <br>
+    // create by Ranger#6017 <br>
+    // version pt-br 1.0 <br>
+</p>
+<p id="preto">
+    var room = HBInit({ <br>
+        roomName: "Script mute", <br>
+        maxPlayers: 5, <br>
+        public: true, <br>
+        token: "none", <br>
+        noPlayer: true <br>
+      }); <br>
+      <br> 
+      let colors = { <br>
+          red: 0xFA5646, <br>
+          orange: 0xFFC12F, <br>
+          green: 0x7DFA89, <br>
+      } <br>
+      <br> 
+      var message;<br> 
+      <br>
+      const bannedwords = ["words", "words1", "words2", "words3", "words4"] // write words banneds here<br>
+      var mutedbybannedwords = [] // muteds here<br>
+      var timeofmute = 600000; // change time of mute here 180000 = 3 minutes of mute<br>
+      <br>
+      function unnbanplayer(player){<br>
+          setTimeout(() => {<br>
+          var remove = mutedbybannedwords.indexOf(message);<br>
+          mutedbybannedwords.splice(remove)<br>
+          room.sendAnnouncement("You've been unnmuted, don't talk any more offenses!", player.id, colors.green, "bold", 2);<br>
+          }, timeofmute);<br>
+      }<br>
+      <br>
+      room.onPlayerChat = function (player, message) {<br>
+          message = message;<br>
+          if (bannedwords.includes(message.toLowerCase())) {<br>
+            mutedbybannedwords.push(player.name)<br>
+              room.sendAnnouncement("you are muted for teen minutes reason: toxic player", player.id, colors.red, "bold")<br>
+              unnbanplayer(player)<br>
+              return false;<br>
+          }<br>
+          if (mutedbybannedwords.includes(player.name) == true) {<br>
+          room.sendAnnouncement("wait teen minutes to write again.", player.id, colors.orange, "bold")<br>
+          return false;<br>
+          }<br>
+      }<br>
+</div>
+</body>
+</html>
