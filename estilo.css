@@ -22,16 +22,28 @@
     }
     .textonav{
     padding: 5px;
-    width: 5px;
-    height: 5px;
-    background-color: rgb(211, 233, 255);
+    width: 2px;
+    height: 2px;
     text-align: center;
     text-decoration: none;
-    color: black;
+    color: rgb(255, 255, 255);
+    margin: 25px;
+    }
+    .textona{
+    padding: 5px;
+    width: 2px;
+    height: 2px;
+    text-align: center;
+    text-decoration: none;
+    color: rgb(27, 27, 27);
     margin: 25px;
     }
     .textonav:hover{
-    background-color: rgb(255, 213, 213);
+    background-color: rgb(107, 107, 107);
+    padding: 1px;
+    }
+    .textona:hover{
+    background-color: rgb(116, 196, 250);
     padding: 1px;
     }
     div#apresentação{
