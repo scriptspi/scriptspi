@@ -121,14 +121,14 @@
     margin-left: -5px;
     min-width: 320px;
     max-width: 800px;
-}
-div#borda2{
+    }
+    div#borda2{
     min-width: 320px;
     max-width: 800px;
     margin-top: 25px;
     margin-left: -20px;
-}
-p#afk{
+    }
+    p#afk{
     width: 800px;
     height: 1260px;
     background-color: rgb(224, 224, 224);
@@ -136,27 +136,27 @@ p#afk{
     padding-top: 15px;
     padding-left: 15px;
     box-shadow: 1px 1px 1px;
-}
-mark#vermelho{
-color:red;
-background-color: rgb(224, 224, 224);
-text-decoration: none;
-font-family:'Courier New', Courier, monospace;
-}
-div#noticias{
+    }
+    mark#vermelho{
+    color:red;
+    background-color: rgb(224, 224, 224);
+    text-decoration: none;
+    font-family:'Courier New', Courier, monospace;
+    }
+    div#noticias{
     margin:auto;
     min-width: 320px;
     max-width: 800px;
     padding-left: 14px;
     padding-top: 10px;
     border-radius: 0px 0px 5px 5px;
-}
-h1#ns{
+    }
+    h1#ns{
     color: red;
     font-family: 'Courier New', Courier, monospace;
     text-indent: 25px;
-}
-p#ranger{
+    }
+    p#ranger{
     text-align: center;
     margin-top: 30px;
     color: rgb(250, 250, 250);
@@ -167,28 +167,28 @@ p#ranger{
     max-width: 800px;
     background-color: dodgerblue;
     border-radius: 0px 0px 2px 2px;
-}
-div#background{
+    }
+    div#background{
     border: 1px solid black;
     background-color: rgb(240, 240, 240);
     margin:auto;
     min-width: 320px;
     max-width: 800px;
-}
-p#aviso{
+    }
+    p#aviso{
     margin:auto;
     min-width: 320px;
     max-width: 800px;
     text-align: center;
     margin-top: 10px;
-}
-p#textodeapresentação{
+    }
+    p#textodeapresentação{
     padding-left: 10px;
-}
-p#funcionap{
+    }
+    p#funcionap{
     text-indent: 20px;
-}
-li#link{
+    }
+    li#link{
     margin:auto;
     margin-bottom: 10px;
 }
