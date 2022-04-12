@@ -21,6 +21,8 @@
     }
     .textonav{
     padding: 5px;
+    width: 5px;
+    height: 5px;
     background-color: rgb(211, 233, 255);
     text-align: center;
     text-decoration: none;
@@ -63,29 +65,44 @@
     }
     div#como{
     padding-top: 35px;
+    padding-left: 30px;
     font-family: 'Courier New', Courier, monospace;
     }
     div#funciona{
     padding-top: 25px;
     font-size: 17px;
+    padding-left: 20px;
     }
     div#primeiro{
     padding-top: 25px;
+    margin:auto;
+    min-width: 320px;
+    max-width: 800px;
+    padding-left: 30px;
     }
     div#Segundo{
     padding-top: 25px;
+    margin:auto;
+    min-width: 320px;
+    max-width: 800px;
+    padding-left: 30px;
     }
+    div#Terceiro{
+        padding-top: 25px;
+        margin:auto;
+        min-width: 320px;
+        max-width: 800px;
+        }
     div#borda{
-    width: 400px;
-    height: 100px;
-    border: 1px solid black;
     margin-top: 25px;
-    padding-left: 10px;
     margin-left: -5px;
+    min-width: 320px;
+    max-width: 800px;
 }
 div#borda2{
+        min-width: 320px;
+        max-width: 800px;
     margin-top: 25px;
-    padding-left: 10px;
     margin-left: -20px;
 }
 p#afk{
@@ -133,4 +150,11 @@ div#background{
     margin:auto;
     min-width: 320px;
     max-width: 800px;
+}
+p#aviso{
+    margin:auto;
+    min-width: 320px;
+    max-width: 800px;
+    text-align: center;
+    margin-top: 10px;
 }
