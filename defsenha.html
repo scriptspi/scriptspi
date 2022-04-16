@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de definir senha.</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <div id="background">
+    <div id="titulo">
+    <h1 id="Pw">Definir/Excluir Senha de ADMINS</h1>
+</div>
+<div class="nav">
+<a href="Scripts.html" class="textonav">Voltar</a>
+<a href="https://discord.gg/aX25MCec27" target="_blank" class="textonav">Discord</a>
+</div>
+<div id="scriptmudo">
+<p id="verde">
+
+</p>
+<p id="preto">
+    <br>
+    // discord https://discord.gg/aX25MCec27<br>
+    // criador por Ranger#6017<br>
+    // version pt-br 1.0<br>
+    <br>
+    var room = HBInit({<br>
+      roomName: "Definir/Excluir Senha de ADMINS",<br>
+      maxPlayers: 10,<br>
+      public: true,<br>
+      noPlayer: true<br>
+    });<br>
+    <br>
+    /* comandos <br>
+    !definir 5050 = define a senha para 5050.<br>
+    !limpar = exclui a senha se tal existir.<br>
+    !saber = mostra a senha que foi definida.<br>
+    */<br>
+    <br>
+    var administrador_mestre = ['ranger'] // coloque o seu nome para ser reconhecido como administrador mestre.<br>
+    const senha = [] // senhas serão alocadas aqui.<br>
+    <br>
+    let cores = { // todas as cores, para adicionar escreva o nome da cor e o seu número chave https://haxcolors-legacy.herokuapp.com link < -<br>
+        vermelho: 0xFA5646,<br>
+        laranja: 0xFFC12F,<br>
+        verde: 0x7DFA89,<br>
+        azul: 0x05C5FF,<br>
+        amarelo: 0xFFFF17,<br>
+        branco: 0xFFFFFF<br>
+    }<br>
+    <br>
+    function alterar_senha(player, message){ // função verificar se já existe uma senha e definir uma senha se não exister tal.<br>
+        if(senha.length == 1) {<br>
+        room.sendAnnouncement('A senha não pode ser definida pois já existe uma escreva !saber para ver qual e a senha.', player.id,<br> cores.vermelho, "bold");	
+        setTimeout(() => {<br>
+        room.sendAnnouncement('se quiser remover a senha escreva !limpar', player.id, cores.laranja, "bold");<br>
+        }, 2_000)<br>
+        }<br>
+        else if (message.includes(message.substr(9))) {<br>
+        room.sendAnnouncement('senha definida: ' + message.substr(9), player.id, cores.branco, "bold");<br>
+        senha.push(message.substr(9))<br>
+        }<br>
+    }<br>
+    <br>
+    room.onPlayerChat = function (player, message) {<br>
+        if (senha.includes(message.toLowerCase())) {<br>
+        room.setPlayerAdmin(player.id,true)<br>
+        room.sendAnnouncement(`${player.name} foi verificado e foi dado as permições de administrador para esta sala.`, null, cores.verde, 'bold');<br>
+        return false;<br>
+        }<br>
+        if (message.substr(0, 9) == "!definir ") {<br>
+        if (administrador_mestre.includes(player.name) == true) {<br>
+        alterar_senha(player, message)<br>
+        }<br>
+        else room.sendAnnouncement(`[ERRO] Você não e um administrador mestre para definir uma senha [ERRO]`, player.id, cores.laranja, 'bold');<br>	
+        return false;<br>
+        }<br>
+        message = message.split(/ +/);<br>
+        if (["!limpar"].includes(message[0].toLowerCase())) {<br>
+        if (player.admin == true) {<br>
+        senha.splice(senha.indexOf(message))<br>
+        room.sendAnnouncement(`a senha foi excluida com sucesso!`, player.id, cores.amarelo, 'bold');<br>	
+        }<br>
+        else room.sendAnnouncement(`[ERRO] Comando para administradores ou não existe uma senha [ERRO]`, player.id, cores.vermelho, 'bold');<br>	
+        return false;<br>
+        }<br>
+        else if (["!saber"].includes(message[0].toLowerCase())) {<br>
+        if (player.admin == false) {<br>
+        room.sendAnnouncement(`[ERRO] Comando para administradores [ERRO]`, player.id, cores.vermelho, 'bold');<br>
+        return false;	<br>
+        }<br>
+        else if (player.admin == true) {<br>
+        if(senha.length == 1) {	<br>
+        room.sendAnnouncement(`a senha de admin é ${senha}`, player.id, cores.azul, 'bold');	<br>
+        }<br>
+        else room.sendAnnouncement(`a senha de admin não foi definida ainda use o comando !definir`, player.id, cores.laranja, 'bold');<br>
+        return false;	<br>
+        }<br>
+        }<br>
+    }<br>
+</p>
+</div>
+</div>
+</body>
+</html>

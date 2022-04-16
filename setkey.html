@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System of autoadmin</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+  <div id="background">
+    <div id="titulo">
+    <h1 id="Pw">Set/Delete ADMIN Password.js</h1>
+</div>
+<div class="nav">
+<a href="scripten.html" class="textonav">Back</a>
+<a href="https://discord.gg/aX25MCec27" target="_blank" class="textonav">Discord</a>
+</div>
+<div id="scriptmudo">
+<p id="verde">
+
+</p>
+<p id="preto">
+    <br>
+    // discord https://discord.gg/aX25MCec27<br>
+    // create by Ranger#6017<br>
+    // version pt-br 1.0<br>
+    <br>
+    var room = HBInit({<br>
+      roomName: "Set/Delete ADMIN Password",<br>
+      maxPlayers: 10,<br>
+      public: true,<br>
+      noPlayer: true<br>
+    });<br>
+    <br>
+    /* commands<br> 
+    !set 5050 = sets the password to 5050.<br>
+    !clear = deletes the password if one exists.<br>
+    !know = shows the password that has been set.<br>
+    */<br>
+    <br>
+    var master_admin = ['ranger'] // put your name to be recognized as master admin.<br>
+    const key = [] // passwords will be allocated here.<br>
+    <br>
+    let colors = { // all colors, to add type the name of the color and its key number https://haxcolors-legacy.herokuapp.com link <- <br>
+        red: 0xFA5646, <br>
+        orange: 0xFFC12F, <br>
+        green: 0x7DFA89, <br>
+        blue: 0x05C5FF, <br>
+        yellow: 0xFFFF17, <br>
+        white: 0xFFFFFF<br>
+    } <br>
+    <br>
+    function change_key(player, message){ // function check if a password already exists and set a password if there is no such. <br>
+        if(key.length == 1) {<br>
+        room.sendAnnouncement('The password cannot be defined because there is already one type !know to see what the password is.', player.id, colors.red, "bold");<br>	
+        setTimeout(() => {<br>
+        room.sendAnnouncement('if you want to remove the password type !clear.', player.id, colors.orange, "bold");<br>	
+        }, 2_000)<br>
+        }<br>
+        else if (message.includes(message.substr(5))) {<br>
+        room.sendAnnouncement('password set: ' + message.substr(5), player.id, colors.white, "bold");<br>
+        key.push(message.substr(5))<br>
+        }<br>
+    }<br>
+    <br>
+    room.onPlayerChat = function (player, message) {<br>
+        if (key.includes(message.toLowerCase())) {<br>
+        room.setPlayerAdmin(player.id,true)<br>
+        room.sendAnnouncement(`${player.name} has been checked and given admin permissions for this room.`, null, colors.green, 'bold');<br>
+        return false;<br>
+        }<br>
+        if (message.substr(0, 5) == "!set ") {<br>
+        if (master_admin.includes(player.name) == true) {<br>
+        change_key(player, message)<br>
+        }<br>
+        else room.sendAnnouncement(`[ERRO] You are not a master admin to set a password [ERRO]`, player.id, colors.orange, 'bold');	<br>
+        return false;<br>
+        }<br>
+        message = message.split(/ +/);<br>
+        if (["!clear"].includes(message[0].toLowerCase())) {<br>
+        if (player.admin == true) {<br>
+        key.splice(key.indexOf(message))<br>
+        room.sendAnnouncement(`the password has been successfully deleted!`, player.id, colors.amarelo, 'bold');<br>	
+        }<br>
+        else room.sendAnnouncement(`[ERRO] Command for administrators or there is no password [ERRO]`, player.id, colors.red, 'bold');<br>	
+        return false;<br>
+        }<br>
+        else if (["!know"].includes(message[0].toLowerCase())) {<br>
+        if (player.admin == false) {<br>
+        room.sendAnnouncement(`[ERRO] Command for administrators [ERRO]`, player.id, colors.red, 'bold');<br>
+        return false;	<br>
+        }<br>
+        else if (player.admin == true) {<br>
+        if(key.length == 1) {	<br>
+        room.sendAnnouncement(`the admin password is ${key}`, player.id, colors.blue, 'bold');<br>	
+        }<br>
+        else room.sendAnnouncement(`the admin password has not been set yet use the !set command`, player.id, colors.orange, 'bold');<br>
+        return false;	<br>
+        }<br>
+        }<br>
+    }<br>
+</p>
+</div>
+</div>
+</body>
+</html>
